@@ -2,7 +2,6 @@
 
 Website e-commerce official untuk brand clothing **KAHFA** — timeless essentials made to last.
 
-**Design reference:** [onionwrks.com](https://onionwrks.com)  
 **Stack:** Pure HTML · Vanilla CSS · Vanilla JavaScript  
 **Status:** v1.0 — Frontend Complete
 
