@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Kahfa — Timeless Essentials</title>
+  <meta name="description" content="Kahfa is an Indonesia-based clothing brand creating timeless essentials made to last. Shop our latest collection of minimalist streetwear.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Roboto+Mono:wght@200;300;400;500&family=Playfair+Display:ital,wght@1,400;1,500&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="css/home.css">
+</head>
+<body>
+
+  <main class="page-main">
+
+    <!-- Hero -->
+    <section class="hero">
+      <img class="hero__img" src="assets/images/hero_main.png" alt="Kahfa SS'25 Collection">
+      <div class="hero__overlay">
+        <div class="hero__cta">
+          <a href="shop.html" class="btn btn-outline">Shop All</a>
+        </div>
+      </div>
+    </section>
+
+    <!-- Featured Products -->
+    <section class="featured">
+      <div class="featured__header">
+        <p class="section-title" style="margin:0;">New Arrivals</p>
+        <a href="shop.html" class="nav-link" style="font-size:11px;letter-spacing:1px;">View All →</a>
+      </div>
+      <div class="featured__grid">
+        <a href="shop.html" class="product-card">
+          <div class="product-card__img-wrap">
+            <img src="assets/images/product_jacket_black.png" alt="Kahfa Bomber Jacket">
+            <div class="product-card__overlay">
+              <button class="quick-add-btn" onclick="event.preventDefault();addToBag(3,'M')">Quick Add</button>
+            </div>
+            <span class="product-card__badge">New</span>
+          </div>
+          <div class="product-card__info">
+            <p class="product-card__name">Kahfa Bomber Jacket — Black</p>
+            <p class="product-card__price">Rp 749.000</p>
+          </div>
+        </a>
+        <a href="shop.html" class="product-card">
+          <div class="product-card__img-wrap">
+            <img src="assets/images/product_tshirt_cream.png" alt="Kahfa Essential Tee Cream">
+            <div class="product-card__overlay">
+              <button class="quick-add-btn" onclick="event.preventDefault();addToBag(2,'M')">Quick Add</button>
+            </div>
+          </div>
+          <div class="product-card__info">
+            <p class="product-card__name">Kahfa Essential Tee — Cream</p>
+            <p class="product-card__price">Rp 299.000</p>
+          </div>
+        </a>
+        <a href="shop.html" class="product-card">
+          <div class="product-card__img-wrap">
+            <img src="assets/images/product_pants_black.png" alt="Kahfa Wide-Leg Trousers">
+            <div class="product-card__overlay">
+              <button class="quick-add-btn" onclick="event.preventDefault();addToBag(4,'M')">Quick Add</button>
+            </div>
+          </div>
+          <div class="product-card__info">
+            <p class="product-card__name">Kahfa Wide-Leg Trousers</p>
+            <p class="product-card__price">Rp 449.000</p>
+          </div>
+        </a>
+      </div>
+    </section>
+
+    <!-- Collection Banner -->
+    <div class="collection-banner">
+      <div class="collection-banner__img">
+        <img src="assets/images/lookbook_02.png" alt="Kahfa SS25 Lookbook">
+      </div>
+      <div class="collection-banner__content">
+        <p class="collection-banner__label">SS '25 Collection</p>
+        <h2 class="collection-banner__title">Objects,<br>Art &amp;<br>Everyday Culture</h2>
+        <p class="collection-banner__desc">Timeless essentials made to last for generations. We blend elements of objects, art, and everyday culture to thoughtfully fill the gaps in your wardrobe.</p>
+        <a href="shop.html" class="btn btn-outline-dark" style="align-self:flex-start;">Explore Collection</a>
+      </div>
+    </div>
+
+    <!-- Lookbook Teaser -->
+    <section class="featured" style="padding-top:0;">
+      <div class="featured__header">
+        <p class="section-title" style="margin:0;">Lookbook</p>
+        <a href="gallery.html" class="nav-link" style="font-size:11px;letter-spacing:1px;">View Gallery →</a>
+      </div>
+      <div class="featured__grid">
+        <a href="gallery.html" class="product-card">
+          <div class="product-card__img-wrap">
+            <img src="assets/images/lookbook_01.png" alt="Lookbook 01">
+          </div>
+        </a>
+        <a href="gallery.html" class="product-card">
+          <div class="product-card__img-wrap">
+            <img src="assets/images/lookbook_03.png" alt="Lookbook 03">
+          </div>
+        </a>
+        <a href="gallery.html" class="product-card">
+          <div class="product-card__img-wrap">
+            <img src="assets/images/lookbook_06.png" alt="Lookbook 06">
+          </div>
+        </a>
+      </div>
+    </section>
+
+    <!-- Info Strip -->
+    <div class="info-strip">
+      <div class="info-strip__item">
+        <span class="info-strip__icon">✦</span>
+        <p class="info-strip__title">Free Shipping</p>
+        <p class="info-strip__desc">On all orders above Rp 500.000 within Indonesia.</p>
+      </div>
+      <div class="info-strip__item">
+        <span class="info-strip__icon">◎</span>
+        <p class="info-strip__title">Quality First</p>
+        <p class="info-strip__desc">Premium materials selected for longevity and comfort.</p>
+      </div>
+      <div class="info-strip__item">
+        <span class="info-strip__icon">↩</span>
+        <p class="info-strip__title">Easy Returns</p>
+        <p class="info-strip__desc">14-day hassle-free return policy on all products.</p>
+      </div>
+    </div>
+
+    <!-- Newsletter -->
+    <section class="newsletter">
+      <p class="newsletter__title">Stay Updated</p>
+      <h3 class="newsletter__heading">Join the Kahfa Community</h3>
+      <form class="newsletter__form" onsubmit="event.preventDefault();this.innerHTML='<p style=\'color:#fff;font-size:12px;letter-spacing:1px;\'>Thank you for subscribing!</p>'">
+        <input type="email" class="newsletter__input" placeholder="Your email address" required>
+        <button type="submit" class="newsletter__btn">Subscribe</button>
+      </form>
+    </section>
+
+  </main>
+
+  <script src="js/main.js"></script>
+</body>
+</html>

@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Gallery — Kahfa</title>
+  <meta name="description" content="Explore the Kahfa lookbook — editorial photography featuring our SS'25 collection.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Roboto+Mono:wght@200;300;400;500&family=Playfair+Display:ital,wght@1,400;1,500&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="css/gallery.css">
+</head>
+<body>
+
+  <main class="page-main">
+
+    <div class="gallery-header">
+      <h1 class="gallery-header__title">Gallery</h1>
+      <p class="gallery-header__sub">SS'25 Lookbook — Jakarta</p>
+    </div>
+
+    <div class="gallery-grid" id="gallery-grid">
+
+      <div class="gallery-item" onclick="openLightbox(0)">
+        <img src="assets/images/lookbook_01.png" alt="Kahfa Lookbook 01" loading="lazy">
+        <div class="gallery-item__overlay">
+          <span class="gallery-item__label">SS'25 — 01</span>
+        </div>
+      </div>
+
+      <div class="gallery-item" onclick="openLightbox(1)">
+        <img src="assets/images/lookbook_02.png" alt="Kahfa Lookbook 02" loading="lazy">
+        <div class="gallery-item__overlay">
+          <span class="gallery-item__label">SS'25 — 02</span>
+        </div>
+      </div>
+
+      <div class="gallery-item" onclick="openLightbox(2)">
+        <img src="assets/images/lookbook_03.png" alt="Kahfa Lookbook 03" loading="lazy">
+        <div class="gallery-item__overlay">
+          <span class="gallery-item__label">SS'25 — 03</span>
+        </div>
+      </div>
+
+      <div class="gallery-item" onclick="openLightbox(3)">
+        <img src="assets/images/lookbook_04.png" alt="Kahfa Lookbook 04" loading="lazy">
+        <div class="gallery-item__overlay">
+          <span class="gallery-item__label">SS'25 — 04</span>
+        </div>
+      </div>
+
+      <div class="gallery-item" onclick="openLightbox(4)">
+        <img src="assets/images/lookbook_05.png" alt="Kahfa Lookbook 05" loading="lazy">
+        <div class="gallery-item__overlay">
+          <span class="gallery-item__label">SS'25 — 05</span>
+        </div>
+      </div>
+
+      <div class="gallery-item" onclick="openLightbox(5)">
+        <img src="assets/images/lookbook_06.png" alt="Kahfa Lookbook 06" loading="lazy">
+        <div class="gallery-item__overlay">
+          <span class="gallery-item__label">SS'25 — 06</span>
+        </div>
+      </div>
+
+    </div>
+
+    <!-- Lightbox -->
+    <div class="lightbox" id="lightbox" onclick="closeLightbox()">
+      <button class="lightbox__close" onclick="closeLightbox()">×</button>
+      <button class="lightbox__nav lightbox__prev" onclick="event.stopPropagation();shiftLightbox(-1)">‹</button>
+      <img class="lightbox__img" id="lightbox-img" src="" alt="Lookbook">
+      <button class="lightbox__nav lightbox__next" onclick="event.stopPropagation();shiftLightbox(1)">›</button>
+    </div>
+
+  </main>
+
+  <script src="js/main.js"></script>
+  <script>
+    const galleryImages = [
+      'assets/images/lookbook_01.png',
+      'assets/images/lookbook_02.png',
+      'assets/images/lookbook_03.png',
+      'assets/images/lookbook_04.png',
+      'assets/images/lookbook_05.png',
+      'assets/images/lookbook_06.png'
+    ];
+    let currentLightbox = 0;
+
+    function openLightbox(index) {
+      currentLightbox = index;
+      document.getElementById('lightbox-img').src = galleryImages[index];
+      document.getElementById('lightbox').classList.add('is-open');
+      document.body.style.overflow = 'hidden';
+    }
+
+    function closeLightbox() {
+      document.getElementById('lightbox').classList.remove('is-open');
+      document.body.style.overflow = '';
+    }
+
+    function shiftLightbox(dir) {
+      currentLightbox = (currentLightbox + dir + galleryImages.length) % galleryImages.length;
+      document.getElementById('lightbox-img').src = galleryImages[currentLightbox];
+    }
+
+    document.addEventListener('keydown', e => {
+      const lb = document.getElementById('lightbox');
+      if (!lb.classList.contains('is-open')) return;
+      if (e.key === 'ArrowLeft')  shiftLightbox(-1);
+      if (e.key === 'ArrowRight') shiftLightbox(1);
+      if (e.key === 'Escape')     closeLightbox();
+    });
+  </script>
+</body>
+</html>

@@ -1,0 +1,163 @@
+/* ============================================================
+   KAHFA — Gallery Page Styles
+   ============================================================ */
+
+.gallery-header {
+  padding: 40px 24px 24px;
+  border-bottom: 1px solid var(--color-border);
+}
+
+.gallery-header__title {
+  font-size: 11px;
+  letter-spacing: 3px;
+  text-transform: uppercase;
+  color: var(--color-black);
+}
+
+.gallery-header__sub {
+  font-size: 11px;
+  font-weight: 300;
+  color: var(--color-mid);
+  margin-top: 6px;
+  letter-spacing: 0.5px;
+}
+
+/* ── Gallery Grid ──────────────────────────────────── */
+.gallery-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 8px;
+  padding: 24px;
+}
+
+.gallery-item {
+  position: relative;
+  overflow: hidden;
+  aspect-ratio: 3/4;
+  background: var(--color-card);
+  cursor: pointer;
+}
+
+.gallery-item img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.5s ease;
+}
+
+.gallery-item:hover img {
+  transform: scale(1.06);
+}
+
+.gallery-item__overlay {
+  position: absolute;
+  inset: 0;
+  background: rgba(0,0,0,0);
+  display: flex;
+  align-items: flex-end;
+  padding: 20px;
+  transition: background var(--transition-med);
+}
+
+.gallery-item:hover .gallery-item__overlay {
+  background: rgba(0,0,0,0.28);
+}
+
+.gallery-item__label {
+  font-size: 11px;
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+  color: var(--color-white);
+  opacity: 0;
+  transform: translateY(6px);
+  transition: all var(--transition-fast);
+}
+
+.gallery-item:hover .gallery-item__label {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* ── Large Feature Item ─────────────────────────── */
+.gallery-item--wide {
+  grid-column: span 2;
+  aspect-ratio: auto;
+}
+
+.gallery-item--tall {
+  grid-row: span 2;
+  aspect-ratio: auto;
+}
+
+/* ── Lightbox ───────────────────────────────────── */
+.lightbox {
+  position: fixed;
+  inset: 0;
+  background: rgba(0,0,0,0.92);
+  z-index: 3000;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity var(--transition-med);
+}
+
+.lightbox.is-open {
+  opacity: 1;
+  pointer-events: all;
+}
+
+.lightbox__img {
+  max-width: 90vw;
+  max-height: 90vh;
+  object-fit: contain;
+  display: block;
+}
+
+.lightbox__close {
+  position: absolute;
+  top: 24px;
+  right: 32px;
+  font-size: 32px;
+  color: rgba(255,255,255,0.7);
+  cursor: pointer;
+  transition: color var(--transition-fast);
+  line-height: 1;
+  background: none;
+  border: none;
+}
+
+.lightbox__close:hover { color: var(--color-white); }
+
+.lightbox__nav {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  background: rgba(255,255,255,0.1);
+  border: none;
+  color: var(--color-white);
+  font-size: 24px;
+  width: 48px;
+  height: 48px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: background var(--transition-fast);
+}
+
+.lightbox__nav:hover { background: rgba(255,255,255,0.2); }
+.lightbox__prev { left: 24px; }
+.lightbox__next { right: 24px; }
+
+/* ── Responsive Gallery ─────────────────────────── */
+@media (max-width: 900px) {
+  .gallery-grid { grid-template-columns: repeat(2, 1fr); gap: 6px; padding: 16px; }
+  .gallery-item--wide { grid-column: span 1; }
+}
+
+@media (max-width: 600px) {
+  .gallery-header { padding: 24px 16px; }
+  .gallery-grid { grid-template-columns: repeat(2, 1fr); gap: 4px; padding: 8px; }
+}
