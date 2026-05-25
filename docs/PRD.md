@@ -1,8 +1,8 @@
 # KAHFA — Product Requirements Document (PRD)
 
-**Version:** 1.0  
+**Version:** 2.0  
 **Created:** May 2025  
-**Status:** Frontend Complete — Backend Pending  
+**Status:** v2.0 — Migrated to Next.js  
 **Owner:** KAHFA Brand Team
 
 ---
@@ -16,8 +16,8 @@ KAHFA adalah platform e-commerce clothing brand Indonesia yang menjual timeless 
 Menciptakan pengalaman belanja online yang sesederhana dan seelegan produk yang dijual — bersih, cepat, dan penuh intention.
 
 ### 1.3 Reference Benchmark
-- **Design Reference:** [onionwrks.com](https://onionwrks.com) — minimalist streetwear aesthetic
-- **UX Reference:** Shopify storefronts tier premium (minimal friction checkout)
+- **Design Reference:** Minimalist streetwear aesthetic
+- **UX Reference:** Premium Shopify storefronts (minimal friction checkout)
 
 ---
 

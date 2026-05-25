@@ -2,8 +2,8 @@
 
 Website e-commerce official untuk brand clothing **KAHFA** — timeless essentials made to last.
 
-**Stack:** Pure HTML · Vanilla CSS · Vanilla JavaScript  
-**Status:** v1.0 — Frontend Complete
+**Stack:** Next.js 16 · TypeScript · CSS Modules · React Context  
+**Status:** v2.0 — Next.js App Router
 
 ---
 
@@ -12,50 +12,61 @@ Website e-commerce official untuk brand clothing **KAHFA** — timeless essentia
 ```
 project-kahfa-01/
 │
-├── index.html              # Home page
-├── shop.html               # Shop / all products
-├── about.html              # About & contact
-├── gallery.html            # Lookbook gallery
+├── app/                        ← App Router
+│   ├── layout.tsx              ← Root layout (server) + SEO metadata
+│   ├── page.tsx                ← Homepage (/)
+│   ├── shop/page.tsx           ← Shop (/shop)
+│   ├── about/page.tsx          ← About (/about)
+│   ├── gallery/page.tsx        ← Gallery (/gallery)
+│   └── globals.css             ← ⭐ Design system (tokens, shared components)
 │
-├── css/
-│   ├── style.css           # ⭐ Design system (tokens, shared components)
-│   ├── home.css            # Styles khusus home
-│   ├── shop.css            # Styles khusus shop
-│   ├── about.css           # Styles khusus about
-│   └── gallery.css         # Styles khusus gallery
+├── components/
+│   ├── layout/
+│   │   ├── ClientShell.tsx     ← Provider wrapper (bag, search state)
+│   │   ├── Ticker.tsx          ← Announcement ticker
+│   │   ├── SiteHeader.tsx      ← Sticky header
+│   │   └── SiteFooter.tsx      ← Footer
+│   ├── bag/
+│   │   ├── BagContext.tsx      ← ⭐ Bag state (React Context + useReducer)
+│   │   └── BagDrawer.tsx       ← Slide-in bag drawer UI
+│   ├── search/
+│   │   └── SearchOverlay.tsx   ← Fullscreen search overlay
+│   └── products/
+│       └── ProductCard.tsx     ← Reusable product card
 │
-├── js/
-│   ├── main.js             # ⭐ Shared logic: bag, search, header inject
-│   └── shop.js             # Filter, sort, render produk
+├── data/
+│   └── products.ts             ← PRODUCTS array + TypeScript types
 │
-├── assets/
-│   └── images/             # Semua gambar (hero, produk, lookbook)
+├── styles/
+│   ├── Home.module.css         ← Homepage-specific styles
+│   ├── Shop.module.css         ← Shop-specific styles
+│   ├── About.module.css        ← About-specific styles
+│   └── Gallery.module.css      ← Gallery-specific styles
+│
+├── public/
+│   └── images/                 ← All images (hero, products, lookbook)
+│
+├── _legacy/                    ← Archive: original HTML/CSS/JS files
 │
 └── docs/
-    ├── PRD.md              # Product Requirements Document
-    ├── DESIGN_SYSTEM.md    # Design system (warna, font, komponen)
-    └── CHANGELOG.md        # Riwayat perubahan
+    ├── PRD.md                  ← Product Requirements Document
+    ├── DESIGN_SYSTEM.md        ← Design system (warna, font, komponen)
+    └── CHANGELOG.md            ← Riwayat perubahan
 ```
 
 ---
 
 ## 🚀 Quick Start
 
-### Cara 1 — Buka Langsung di Browser
-```
-Klik kanan index.html → Open with → Browser
-```
-
-### Cara 2 — VS Code Live Server (Recommended)
-1. Install extension **Live Server** di VS Code
-2. Klik kanan `index.html` → **"Open with Live Server"**
-3. Browser otomatis terbuka di `http://127.0.0.1:5500`
-
-### Cara 3 — Python Simple Server
 ```bash
-cd "project-kahfa-01"
-python3 -m http.server 3000
+npm run dev
 # Buka: http://localhost:3000
+```
+
+### Build for Production
+```bash
+npm run build
+npm run start
 ```
 
 ---
@@ -64,23 +75,24 @@ python3 -m http.server 3000
 
 | URL | Deskripsi |
 |---|---|
-| `index.html` | Homepage — hero, featured products, lookbook teaser |
-| `shop.html` | Semua produk dengan filter & sort |
-| `about.html` | Brand story, values, dan contact form |
-| `gallery.html` | Lookbook editorial SS'25 |
+| `/` | Homepage — hero, featured products, lookbook teaser |
+| `/shop` | Semua produk dengan filter & sort |
+| `/about` | Brand story, values, dan contact form |
+| `/gallery` | Lookbook editorial SS'25 |
 
 ---
 
 ## ✨ Features
 
-- **Announcement Ticker** — scrolling promo bar di atas semua halaman
-- **Sticky Header** — 3-kolom: nav kiri | logo | nav kanan
-- **Search Overlay** — `Cmd/Ctrl+K` atau klik Search, live filter
-- **My Bag Drawer** — slide-in dari kanan, persisted di localStorage
+- **Announcement Ticker** — scrolling promo bar
+- **Sticky Header** — 3-kolom: nav kiri | logo | nav kanan, active link detection
+- **Search Overlay** — `Cmd/Ctrl+K` shortcut, live filter
+- **My Bag Drawer** — slide-in dari kanan, persisted di localStorage via React Context
 - **Product Filter** — filter by category (Tops/Bottoms/Outerwear)
 - **Product Sort** — sort by price & name
-- **Gallery Lightbox** — klik foto → fullscreen, navigasi ← →
+- **Gallery Lightbox** — klik foto → fullscreen, navigasi ← →, keyboard accessible
 - **Responsive** — mobile 375px hingga desktop 1440px+
+- **SEO** — metadata per halaman, semantic HTML, Open Graph
 
 ---
 
@@ -90,8 +102,8 @@ Lihat [`docs/DESIGN_SYSTEM.md`](docs/DESIGN_SYSTEM.md) untuk dokumentasi lengkap
 
 **Quick reference:**
 ```css
---font-mono: 'Roboto Mono', monospace;   /* Semua teks UI */
---font-logo: 'Playfair Display', serif;  /* Logo saja */
+--font-mono: 'Roboto Mono', monospace;  /* Semua teks UI */
+--font-logo: 'Playfair Display', serif; /* Logo saja */
 
 --color-black:  #111111;
 --color-dark:   #333333;
@@ -106,17 +118,18 @@ Lihat [`docs/DESIGN_SYSTEM.md`](docs/DESIGN_SYSTEM.md) untuk dokumentasi lengkap
 
 ## 🛒 Menambah Produk Baru
 
-Edit array `PRODUCTS` di `js/main.js`:
+Edit array `PRODUCTS` di `data/products.ts`:
 
-```javascript
+```typescript
 {
-  id: 7,                              // ID unik, increment
+  id: 7,
+  slug: 'cargo-pants-olive',
   name: 'Kahfa Cargo Pants — Olive',
   price: 'Rp 529.000',
-  priceNum: 529000,                   // untuk sort & subtotal
-  category: 'bottoms',               // tops | bottoms | outerwear
-  img: 'assets/images/product_cargo_olive.png',
-  badge: 'New',                      // null | 'New' | 'Low Stock' | 'Sold Out'
+  priceNum: 529000,
+  category: 'bottoms',     // 'tops' | 'bottoms' | 'outerwear'
+  img: '/images/product_cargo_olive.png',
+  badge: 'New',             // null | 'New' | 'Low Stock' | 'Sold Out'
   sizes: ['S', 'M', 'L', 'XL']
 }
 ```
@@ -136,12 +149,13 @@ Edit array `PRODUCTS` di `js/main.js`:
 ## 🗺️ Roadmap
 
 ```
-v1.0  ✅ Frontend MVP (current)
-v1.1  ⬜ Product detail page + size selector
-v1.2  ⬜ Checkout flow + payment gateway
-v2.0  ⬜ Backend (database, auth, admin panel)
-v2.1  ⬜ User account + order history
-v3.0  ⬜ Growth features (reviews, promo, analytics)
+v1.0  ✅ Frontend MVP (vanilla HTML/CSS/JS)
+v2.0  ✅ Migrated to Next.js + TypeScript (current)
+v2.1  ⬜ Product detail page + size selector
+v2.2  ⬜ Checkout flow + payment gateway
+v3.0  ⬜ Backend (database, auth, admin panel)
+v3.1  ⬜ User account + order history
+v4.0  ⬜ Growth features (reviews, promo, analytics)
 ```
 
 ---
@@ -151,10 +165,9 @@ v3.0  ⬜ Growth features (reviews, promo, analytics)
 1. **Baca `docs/DESIGN_SYSTEM.md`** sebelum membuat komponen baru
 2. **Gunakan CSS tokens** — jangan hardcode warna atau font
 3. **`border-radius: 0`** — selalu, tanpa exception
-4. **Shared styles** → `css/style.css`, page-specific → CSS halaman masing-masing
-5. **Shared logic** → `js/main.js`, page-specific → JS halaman masing-masing
-6. **Update `docs/CHANGELOG.md`** setiap ada perubahan yang di-commit
-7. **Test di 375px dan 1440px** sebelum dianggap selesai
+4. **Shared styles** → `app/globals.css`, page-specific → CSS Module masing-masing halaman
+5. **Update `docs/CHANGELOG.md`** setiap ada perubahan yang di-commit
+6. **Test di 375px dan 1440px** sebelum dianggap selesai
 
 ---
 

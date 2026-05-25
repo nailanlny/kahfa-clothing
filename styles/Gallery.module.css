@@ -1,0 +1,151 @@
+/* ============================================================
+   KAHFA — Gallery Page Styles
+   ============================================================ */
+
+.galleryHeader {
+  padding: 40px 24px 32px;
+  border-bottom: 1px solid var(--color-border);
+}
+
+.galleryHeaderTitle {
+  font-size: 11px;
+  letter-spacing: 3px;
+  text-transform: uppercase;
+  color: var(--color-black);
+  margin-bottom: 6px;
+}
+
+.galleryHeaderSub {
+  font-size: 11px;
+  font-weight: 300;
+  color: var(--color-mid);
+  letter-spacing: 1px;
+}
+
+/* ── Gallery Grid ────────────────────────────────────────── */
+.galleryGrid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 8px;
+  padding: 32px 24px 64px;
+}
+
+.galleryItem {
+  aspect-ratio: 3/4;
+  overflow: hidden;
+  position: relative;
+  cursor: pointer;
+  background: var(--color-card);
+}
+
+.galleryItem img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform var(--transition-slow);
+}
+
+.galleryItem:hover img {
+  transform: scale(1.04);
+}
+
+.galleryItemOverlay {
+  position: absolute;
+  inset: 0;
+  background: rgba(0,0,0,0);
+  display: flex;
+  align-items: flex-end;
+  padding: 16px;
+  transition: background var(--transition-med);
+}
+
+.galleryItem:hover .galleryItemOverlay {
+  background: rgba(0,0,0,0.3);
+}
+
+.galleryItemLabel {
+  font-size: 10px;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  color: var(--color-white);
+  opacity: 0;
+  transition: opacity var(--transition-med);
+}
+
+.galleryItem:hover .galleryItemLabel {
+  opacity: 1;
+}
+
+/* ── Lightbox ────────────────────────────────────────────── */
+.lightbox {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.95);
+  z-index: 3000;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity var(--transition-med);
+}
+
+.lightboxOpen {
+  opacity: 1;
+  pointer-events: all;
+}
+
+.lightboxClose {
+  position: absolute;
+  top: 24px;
+  right: 32px;
+  font-size: 32px;
+  color: var(--color-white);
+  opacity: 0.7;
+  cursor: pointer;
+  transition: opacity var(--transition-fast);
+  line-height: 1;
+}
+
+.lightboxClose:hover { opacity: 1; }
+
+.lightboxImg {
+  max-width: 90vw;
+  max-height: 90vh;
+  width: auto;
+  height: auto;
+  object-fit: contain;
+}
+
+.lightboxNav {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  font-size: 40px;
+  color: var(--color-white);
+  opacity: 0.6;
+  cursor: pointer;
+  transition: opacity var(--transition-fast);
+  padding: 20px;
+  line-height: 1;
+}
+
+.lightboxNav:hover { opacity: 1; }
+
+.lightboxPrev { left: 16px; }
+.lightboxNext { right: 16px; }
+
+/* ── Responsive Gallery ──────────────────────────────── */
+@media (max-width: 768px) {
+  .galleryGrid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 6px;
+    padding: 20px 16px 48px;
+  }
+}
+
+@media (max-width: 480px) {
+  .galleryGrid {
+    grid-template-columns: 1fr;
+  }
+}

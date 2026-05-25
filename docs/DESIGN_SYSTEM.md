@@ -1,8 +1,8 @@
 # KAHFA — Design System
 
-**Version:** 1.0  
+**Version:** 2.0  
 **Last Updated:** May 2025  
-**Reference:** Inspired by onionwrks.com aesthetic — minimalist streetwear
+**Stack:** Next.js · TypeScript · CSS Modules
 
 > Dokumen ini adalah sumber kebenaran tunggal (*single source of truth*) untuk semua keputusan visual KAHFA. Setiap developer dan designer HARUS mengacu ke sini sebelum membuat komponen baru.
 
@@ -310,23 +310,38 @@ hero_[descriptor].png          → hero_main.png
 
 ---
 
-## 10. File Architecture
+## 10. File Architecture (Next.js)
 
 ```
-css/
-├── style.css       → Design tokens + SEMUA shared components
+app/
+├── globals.css     → Design tokens + SEMUA shared components
 │                     (ticker, header, footer, buttons, cards,
 │                      search overlay, bag drawer, responsive)
-├── home.css        → Styles KHUSUS homepage saja
-├── shop.css        → Styles KHUSUS shop page saja
-├── about.css       → Styles KHUSUS about page saja
-└── gallery.css     → Styles KHUSUS gallery page saja
+├── layout.tsx      → Root layout (server component)
+├── page.tsx        → Homepage
+├── shop/
+│   └── page.tsx    → Shop page
+├── about/
+│   └── page.tsx    → About page
+└── gallery/
+    └── page.tsx    → Gallery page
 
-js/
-├── main.js         → Product data (PRODUCTS array), bag state,
-│                     shared HTML inject, search & bag logic
-└── shop.js         → Filter, sort, render produk di shop.html
+styles/
+├── Home.module.css     → Styles KHUSUS homepage saja
+├── Shop.module.css     → Styles KHUSUS shop page saja
+├── About.module.css    → Styles KHUSUS about page saja
+└── Gallery.module.css  → Styles KHUSUS gallery page saja
+
+components/
+├── layout/         → Ticker, SiteHeader, SiteFooter, ClientShell
+├── bag/            → BagContext (state), BagDrawer (UI)
+├── search/         → SearchOverlay
+└── products/       → ProductCard
+
+data/
+└── products.ts     → PRODUCTS array + TypeScript types
 ```
 
-> **Aturan:** Shared styles → `style.css`. Page-specific → file CSS halaman masing-masing.  
-> Jangan letakkan style spesifik halaman di `style.css`.
+> **Aturan:** Shared styles → `app/globals.css`. Page-specific → CSS Modules masing-masing halaman.  
+> Jangan letakkan style spesifik halaman di `globals.css`.
+

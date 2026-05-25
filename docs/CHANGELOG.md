@@ -5,6 +5,41 @@ Format mengikuti [Keep a Changelog](https://keepachangelog.com/en/1.0.0/).
 
 ---
 
+## [2.0.0] — 2025-05-25
+
+### 🚀 Major Release — Migrasi ke Next.js
+
+#### Changed
+- **Stack:** Vanilla HTML/CSS/JS → Next.js 16 · TypeScript · CSS Modules · React Context
+- **Architecture:** Multi-page HTML → App Router (single project, file-based routing)
+- **State Management:** Global JS functions + `localStorage` manual → React Context + `useReducer` (`BagContext`)
+- **Shared HTML inject:** `injectShared()` DOM manipulation → proper React components (Ticker, SiteHeader, SiteFooter, BagDrawer, SearchOverlay)
+- **Images:** `<img>` tags → `next/image` (otomatis WebP, lazy loading, size optimization)
+- **URLs:** `*.html` → clean paths (`/`, `/shop`, `/about`, `/gallery`)
+
+#### Added
+- `tsconfig.json` — TypeScript strict mode
+- `data/products.ts` — Product data dengan TypeScript types (`Product`, `ProductCategory`, `ProductBadge`)
+- `components/bag/BagContext.tsx` — React Context dengan `useReducer`, custom hook `useBag()`
+- `components/bag/BagDrawer.tsx` — Bag drawer sebagai React component
+- `components/search/SearchOverlay.tsx` — Search overlay dengan controlled state
+- `components/layout/Ticker.tsx` — Server component
+- `components/layout/SiteHeader.tsx` — Client component, active link via `usePathname()`
+- `components/layout/SiteFooter.tsx` — Server component
+- `components/layout/ClientShell.tsx` — Wraps semua providers & global overlays
+- `components/products/ProductCard.tsx` — Reusable card component
+- `styles/Home.module.css`, `Shop.module.css`, `About.module.css`, `Gallery.module.css` — CSS Modules
+- `app/globals.css` — Design tokens + shared styles (ex: `css/style.css`)
+- Root layout dengan `metadata` export untuk SEO
+- `_legacy/` — Arsip seluruh file HTML/CSS/JS sebelumnya
+
+#### Removed
+- `index.html`, `shop.html`, `about.html`, `gallery.html`
+- `css/style.css`, `css/home.css`, `css/shop.css`, `css/about.css`, `css/gallery.css`
+- `js/main.js`, `js/shop.js`
+
+---
+
 ## [1.0.0] — 2025-05-23
 
 ### 🎉 Initial Release — Frontend MVP

@@ -1,0 +1,269 @@
+/* ============================================================
+   KAHFA — Home Page Styles
+   ============================================================ */
+
+/* ── Hero ─────────────────────────────────────────────────── */
+.hero {
+  position: relative;
+  width: 100%;
+  height: calc(100vh - var(--ticker-h) - var(--header-h));
+  min-height: 520px;
+  overflow: hidden;
+}
+
+.heroImg {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center top;
+}
+
+.heroOverlay {
+  position: absolute;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.15);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.heroCta {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 20px;
+  animation: heroFade 1.2s ease forwards;
+  opacity: 0;
+}
+
+@keyframes heroFade {
+  from { opacity: 0; transform: translateY(12px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+/* ── Featured Section ────────────────────────────────────── */
+.featured {
+  padding: 64px 24px;
+}
+
+.featuredHeader {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  margin-bottom: 32px;
+  border-bottom: 1px solid var(--color-border);
+  padding-bottom: 16px;
+}
+
+.featuredGrid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 16px;
+}
+
+/* ── Collection Banner ──────────────────────────────────── */
+.collectionBanner {
+  margin: 0 24px 64px;
+  background: var(--color-card);
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  min-height: 400px;
+  overflow: hidden;
+}
+
+.collectionBannerImg {
+  height: 400px;
+  overflow: hidden;
+  position: relative;
+}
+
+.collectionBannerImg img {
+  height: 100%;
+  object-fit: cover;
+  transition: transform var(--transition-slow);
+}
+
+.collectionBanner:hover .collectionBannerImg img {
+  transform: scale(1.04);
+}
+
+.collectionBannerContent {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding: 48px;
+  gap: 20px;
+}
+
+.collectionBannerLabel {
+  font-size: 10px;
+  letter-spacing: 3px;
+  text-transform: uppercase;
+  color: var(--color-mid);
+}
+
+.collectionBannerTitle {
+  font-size: 28px;
+  font-weight: 300;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  color: var(--color-black);
+  line-height: 1.3;
+}
+
+.collectionBannerDesc {
+  font-size: 12px;
+  font-weight: 300;
+  color: var(--color-mid);
+  line-height: 1.9;
+  max-width: 320px;
+}
+
+/* ── Info Strip ─────────────────────────────────────────── */
+.infoStrip {
+  border-top: 1px solid var(--color-border);
+  border-bottom: 1px solid var(--color-border);
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  margin-bottom: 64px;
+}
+
+.infoStripItem {
+  padding: 36px 40px;
+  border-right: 1px solid var(--color-border);
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.infoStripItem:last-child { border-right: none; }
+
+.infoStripIcon {
+  font-size: 22px;
+  margin-bottom: 4px;
+}
+
+.infoStripTitle {
+  font-size: 11px;
+  font-weight: 400;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  color: var(--color-black);
+}
+
+.infoStripDesc {
+  font-size: 11px;
+  font-weight: 300;
+  color: var(--color-mid);
+  line-height: 1.7;
+}
+
+/* ── Newsletter ─────────────────────────────────────────── */
+.newsletter {
+  background: var(--color-black);
+  padding: 64px 24px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 24px;
+  text-align: center;
+}
+
+.newsletterTitle {
+  font-size: 11px;
+  letter-spacing: 3px;
+  text-transform: uppercase;
+  color: rgba(255,255,255,0.5);
+}
+
+.newsletterHeading {
+  font-size: 22px;
+  font-weight: 200;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  color: var(--color-white);
+  line-height: 1.4;
+}
+
+.newsletterForm {
+  display: flex;
+  gap: 0;
+  max-width: 440px;
+  width: 100%;
+}
+
+.newsletterInput {
+  flex: 1;
+  padding: 14px 20px;
+  background: rgba(255,255,255,0.08);
+  border: 1px solid rgba(255,255,255,0.2);
+  border-right: none;
+  color: var(--color-white);
+  font-family: var(--font-mono);
+  font-size: 12px;
+  font-weight: 300;
+  letter-spacing: 0.5px;
+  border-radius: 0;
+  outline: none;
+}
+
+.newsletterInput::placeholder {
+  color: rgba(255,255,255,0.35);
+}
+
+.newsletterBtn {
+  padding: 14px 24px;
+  background: var(--color-white);
+  color: var(--color-black);
+  border: 1px solid var(--color-white);
+  font-family: var(--font-mono);
+  font-size: 10px;
+  font-weight: 500;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  cursor: pointer;
+  transition: all var(--transition-fast);
+}
+
+.newsletterBtn:hover {
+  background: transparent;
+  color: var(--color-white);
+}
+
+.newsletterSuccess {
+  color: rgba(255,255,255,0.7);
+  font-size: 12px;
+  letter-spacing: 1px;
+}
+
+/* ── Responsive Home ──────────────────────────────────── */
+@media (max-width: 900px) {
+  .featuredGrid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .collectionBanner {
+    grid-template-columns: 1fr;
+  }
+
+  .collectionBannerImg {
+    height: 280px;
+  }
+
+  .collectionBannerContent {
+    padding: 32px;
+  }
+}
+
+@media (max-width: 600px) {
+  .featured { padding: 40px 16px; }
+  .featuredGrid { grid-template-columns: repeat(2, 1fr); gap: 10px; }
+
+  .infoStrip { grid-template-columns: 1fr; }
+  .infoStripItem { border-right: none; border-bottom: 1px solid var(--color-border); padding: 24px 20px; }
+
+  .collectionBanner { margin: 0 16px 40px; }
+  .newsletter { padding: 48px 20px; }
+  .newsletterForm { flex-direction: column; }
+  .newsletterInput { border-right: 1px solid rgba(255,255,255,0.2); }
+}

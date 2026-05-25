@@ -1,0 +1,155 @@
+/* ============================================================
+   KAHFA — Shop Page Styles
+   ============================================================ */
+
+.shopHeader {
+  padding: 40px 24px 24px;
+  border-bottom: 1px solid var(--color-border);
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+}
+
+.shopHeaderTitle {
+  font-size: 11px;
+  letter-spacing: 3px;
+  text-transform: uppercase;
+  color: var(--color-black);
+}
+
+.shopHeaderCount {
+  font-size: 11px;
+  font-weight: 300;
+  color: var(--color-mid);
+  letter-spacing: 0.5px;
+}
+
+/* ── Filter Bar ─────────────────────────────────────────── */
+.filterBar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 14px 24px;
+  border-bottom: 1px solid var(--color-border);
+  gap: 16px;
+  flex-wrap: wrap;
+}
+
+.filterBarLeft {
+  display: flex;
+  gap: 8px;
+  flex-wrap: wrap;
+}
+
+.filterBtn {
+  font-family: var(--font-mono);
+  font-size: 11px;
+  font-weight: 300;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  padding: 8px 16px;
+  border: 1px solid var(--color-border);
+  background: transparent;
+  color: var(--color-dark);
+  cursor: pointer;
+  transition: all var(--transition-fast);
+}
+
+.filterBtn:hover,
+.filterBtnActive {
+  background: var(--color-black);
+  color: var(--color-white);
+  border-color: var(--color-black);
+}
+
+.sortSelect {
+  font-family: var(--font-mono);
+  font-size: 11px;
+  font-weight: 300;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  padding: 8px 16px;
+  border: 1px solid var(--color-border);
+  background: transparent;
+  color: var(--color-dark);
+  cursor: pointer;
+  appearance: none;
+  -webkit-appearance: none;
+  padding-right: 28px;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='10' height='6' viewBox='0 0 10 6'%3E%3Cpath d='M1 1l4 4 4-4' stroke='%23333' stroke-width='1.2' fill='none'/%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-position: right 10px center;
+  border-radius: 0;
+  outline: none;
+}
+
+/* ── Product Grid ───────────────────────────────────────── */
+.productGrid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 20px;
+  padding: 32px 24px 64px;
+}
+
+/* ── Product Card Overlay (shop-specific) ───────────────── */
+.productGrid :global(.product-card__overlay) {
+  position: absolute;
+  inset: 0;
+  background: rgba(0,0,0,0);
+  display: flex;
+  align-items: flex-end;
+  padding: 16px;
+  transition: background var(--transition-med);
+}
+
+.productGrid :global(.product-card:hover .product-card__overlay) {
+  background: rgba(0,0,0,0.08);
+}
+
+.productGrid :global(.quick-add-btn) {
+  width: 100%;
+  padding: 11px;
+  background: var(--color-white);
+  border: 1px solid var(--color-border);
+  font-family: var(--font-mono);
+  font-size: 10px;
+  font-weight: 400;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  cursor: pointer;
+  opacity: 0;
+  transform: translateY(6px);
+  transition: all var(--transition-fast);
+}
+
+.productGrid :global(.product-card:hover .quick-add-btn) {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.productGrid :global(.quick-add-btn:hover) {
+  background: var(--color-black);
+  color: var(--color-white);
+  border-color: var(--color-black);
+}
+
+/* ── No Products ─────────────────────────────────────── */
+.noProducts {
+  grid-column: 1 / -1;
+  text-align: center;
+  padding: 80px 0;
+  color: var(--color-mid);
+  font-size: 13px;
+  letter-spacing: 1px;
+}
+
+/* ── Responsive Shop ──────────────────────────────── */
+@media (max-width: 900px) {
+  .productGrid { grid-template-columns: repeat(2, 1fr); }
+}
+
+@media (max-width: 600px) {
+  .shopHeader { padding: 24px 16px 16px; }
+  .filterBar { padding: 12px 16px; }
+  .productGrid { padding: 20px 16px 48px; gap: 12px; }
+}
